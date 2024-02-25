@@ -10,7 +10,6 @@
 }
 .dashboard .addExpensesMainDiv{
     width: 60%;
-    height: 90vh;
     display: flex;
     margin: auto;
     justify-content: center;
@@ -36,4 +35,11 @@
   }
   .main_usernav h1{
     font-size: 1.4rem;
+  }
+  .dashboard .addExpensesMainDiv h1{
+      padding: 1rem;
+  }
+  .userAllExpenses{
+    display: flex;
+    justify-content: center;
   }

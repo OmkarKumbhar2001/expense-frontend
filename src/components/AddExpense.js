@@ -10,16 +10,28 @@ import { useEffect, useState } from "react";
 import "./css/addExpense.css";
 import dayjs from "dayjs";
 import { GetAllUserProducts } from "../services/secure-requests";
+import { toast } from "react-hot-toast";
+import { UserExpense } from "../services/user-service";
 
-export default function AddExpense() {
-  const [products, setProducts] = useState([]);
+const AddExpense = (props)=> {
+  const [userProducts, setProducts] = useState([]);
+  const [getData, setgetData] = useState(true);
   const [formData, setFormData] = useState({
     product: "",
     spend: "",
     description: "",
     timing: dayjs(), // Initialize timing with current date/time
   });
-
+  useEffect(() => {
+    GetAllUserProducts()
+      .then((response) => {
+        setProducts(response?.data?.products);
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [getData]);
   const handleChange = (name, value) => {
     setFormData((prevFormData) => ({
       ...prevFormData,
@@ -34,20 +46,35 @@ export default function AddExpense() {
     }));
   };
 
-  const submitSpend = () => {
-    console.log(formData);
+  const submitSpend = async () => {
+    let { product, spend, timing, description } = formData;
+
+    if (!product || !spend || !timing || !description) {
+      toast.error("Please fill in all fields.");
+      return;
+    } else {
+      UserExpense(formData).then(res=>{
+        console.log(res)
+        if(getData){
+          setgetData(false)
+        }else{
+          setgetData(true)
+        }
+        setFormData({
+          product: "",
+          spend: "",
+          description: "",
+          timing: dayjs(),
+        });
+      }).catch(err=>{
+        console.log(err)
+      })
+      
+      
+    }
   };
 
-  useEffect(() => {
-    GetAllUserProducts()
-      .then((response) => {
-        setProducts(response?.data?.products);
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+ 
 
   return (
     <div className="addExpense">
@@ -80,7 +107,7 @@ export default function AddExpense() {
           name="product"
           value={formData.product}
           onChange={handleProductChange}
-          options={products.map((option) => option?.product)}
+          options={userProducts.map((option) => option?.product)}
           renderInput={(params) => (
             <TextField
               {...params}
@@ -100,7 +127,7 @@ export default function AddExpense() {
           fullWidth
           size="Normal"
           id="outlined-multiline-flexible"
-          label="Description Optional"
+          label="Description"
           name="description"
           value={formData.description}
           onChange={(e) => handleChange("description", e.target.value)}
@@ -129,3 +156,4 @@ export default function AddExpense() {
     </div>
   );
 }
+export default AddExpense;

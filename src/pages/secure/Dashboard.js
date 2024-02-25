@@ -4,22 +4,36 @@ import AddExpense from "../../components/AddExpense";
 import { doLogout, getCurrentUser, isLoggedIn } from "../../auth";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
+import { GetAllUserExpense } from "../../services/user-service";
+import ExpenseList from "../../components/ExpenseList";
 
 
 const Dashboard = () => {
   const [username,setUsername]=useState("");
+  const [expenses, setExpenses] = useState([]);
   const navigate = useNavigate();
   useEffect(()=>{
     setUsername(getCurrentUser())
     if (!isLoggedIn()) {
       navigate('/login');
     }
-  },[navigate])
+  },[navigate]);
+  useEffect(() => {
+    GetAllUserExpense()
+      .then(response => {
+        console.log(response)
+        setExpenses(response?.data?.expenses);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
   const logout = () => {
     doLogout(() => {
       navigate('/login');
     });
   }
+ 
 
   return (
     <div className="dashboard">
@@ -29,8 +43,13 @@ const Dashboard = () => {
     </div>
       
       <div className="addExpensesMainDiv">
-       <AddExpense />
+       <AddExpense 
+       />
       </div>
+      <div className="userAllExpenses">
+          <ExpenseList expenses={expenses}  />
+      </div>
+  
     </div>
   );
 };
