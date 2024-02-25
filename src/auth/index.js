@@ -24,7 +24,7 @@ export const doLogout = (next)=>{
 //get current user
 export const getCurrentUser = ()=>{
     if(isLoggedIn()){
-        return JSON.parse(localStorage.getItem('data'))?.name;
+        return JSON.parse(localStorage.getItem('data'))?.user?.fullName;
     }else{
         return undefined;
     }
@@ -33,7 +33,7 @@ export const getCurrentUser = ()=>{
 //get Toekn
 export const getToken = ()=>{
     if(isLoggedIn()){
-        return JSON.parse(localStorage.getItem('data'))?.token;
+        return JSON.parse(localStorage.getItem('data'))?.accessToken;
     }else{
         return null;
     }

@@ -1,0 +1,12 @@
+.addExpense{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    height: fit-content;
+    background-color: rgba(154, 154, 154, 0.072);
+    padding: 2rem;
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
+    justify-content: center;
+ 
+}
