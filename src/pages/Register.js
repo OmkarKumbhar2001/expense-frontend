@@ -104,7 +104,9 @@ const Register = () => {
   };
 
   const authGoogleLogin = (token) => {
-    console.log(token);
+    toast.success("We are Working on it please try to register by form ",{
+      icon:"🤩"
+     });
   };
 
   const handleLogin = () => {

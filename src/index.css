@@ -3,9 +3,9 @@ html {
   box-sizing: border-box;
   margin: 0rem;
   padding: 0rem;
-  background-color: #FFDEE9;
+  /* background-color: #FFDEE9;
   background-image: linear-gradient( 109.6deg,  rgba(254,253,205,1) 11.2%, rgba(163,230,255,1) 91.1% );
-  
+   */
 }
 *,
 *::after,

@@ -32,7 +32,9 @@ const Login = () => {
     });
   };
   const authGoogleLogin = (token) => {
-    console.log(token);
+    toast.success("We are Working on it please try to login  by form ",{
+      icon:"🤩"
+     });
   };
   const signup = () => {
     navigate("/register");
