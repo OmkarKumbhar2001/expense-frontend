@@ -51,6 +51,7 @@ const Login = () => {
         return false;
       }
     }
+    setLoading(false)
     return true;
   }
   const handleLogin = () => {

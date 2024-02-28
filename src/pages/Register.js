@@ -76,6 +76,7 @@ const Register = () => {
     }
 
     setFormErrors(newErrors);
+    setLoading(false)
     return isValid;
   };
 

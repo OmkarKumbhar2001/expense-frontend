@@ -52,6 +52,7 @@ const AddExpense = (props)=> {
 
     if (!product || !spend || !timing || !description) {
       toast.error("Please fill in all fields.");
+      setLoading(false)
       return;
     } else {
       UserExpense(formData).then(res=>{
