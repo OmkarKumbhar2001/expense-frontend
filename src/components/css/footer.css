@@ -1,7 +1,11 @@
 .footer{
+    margin-top: 2rem;
     width: 100%;
     background-color: antiquewhite;
-    padding: 4rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;

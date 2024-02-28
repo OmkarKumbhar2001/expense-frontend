@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
-import { Button, IconButton, InputAdornment } from "@mui/material";
+import {  IconButton, InputAdornment } from "@mui/material";
+import LoadingButton from '@mui/lab/LoadingButton';
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import SendIcon from "@mui/icons-material/Send";
@@ -11,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { UserLogin } from "../services/user-service";
 import { doLogin, isLoggedIn } from "../auth";
+import Footer from "../components/Footer";
 const Login = () => {
   const navigate = useNavigate();
   useEffect(()=>{
@@ -19,6 +21,7 @@ const Login = () => {
     }
   },[navigate])
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const [formData, setFormData] = useState({
@@ -51,13 +54,16 @@ const Login = () => {
     return true;
   }
   const handleLogin = () => {
+    setLoading(true)
     if(validator(formData))
       UserLogin(formData).then((response)=>{
         doLogin(response?.data,()=>{
           toast.success("User Login In Successfully")
+          setLoading(false)
         })
         navigate("/dashboard")
       }).catch((error)=>{
+        setLoading(false)
         if(error?.message==="Network Error"){
           toast.error("Server Probelm please try again after some time");
         }
@@ -70,6 +76,7 @@ const Login = () => {
   };
 
   return (
+    <>
     <div className="Login">
       <div className="login-form">
         <h1>Login</h1>
@@ -118,9 +125,10 @@ const Login = () => {
           Don't Have an Account?<b> Signup</b>
         </p>
         <div>
-          <Button fullWidth variant="contained" endIcon={<SendIcon />} onClick={handleLogin}>
+        
+          <LoadingButton loading={loading} fullWidth variant="contained" endIcon={<SendIcon />} onClick={handleLogin}>
             Login
-          </Button>
+          </LoadingButton>
         </div>
         <div className="orImgClass">
           <img className="orImg" src={Or} alt="Or Img" />
@@ -136,7 +144,10 @@ const Login = () => {
           />
         </div>
       </div>
+     
     </div>
+    <Footer />
+      </>
   );
 };
 

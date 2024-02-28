@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
-import { Button, IconButton, InputAdornment } from "@mui/material";
+import {  IconButton, InputAdornment } from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import SendIcon from "@mui/icons-material/Send";
@@ -11,9 +11,11 @@ import { useNavigate } from "react-router-dom";
 import { SignUp } from "../services/user-service";
 import { toast } from "react-hot-toast";
 import { doLogin, isLoggedIn } from "../auth";
-
+import LoadingButton from '@mui/lab/LoadingButton';
+import Footer from "../components/Footer";
 const Register = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   useEffect(()=>{
     if (isLoggedIn()) {
       navigate("/dashboard")
@@ -78,8 +80,10 @@ const Register = () => {
   };
 
   const handleRegister = () => {
+    setLoading(true)
     if (validateForm()) {
       SignUp(formData).then((response)=>{
+        setLoading(false)
         doLogin(response?.data,()=>{
           toast.success("User Register In Successfully",{
             position:"top-right"
@@ -87,6 +91,7 @@ const Register = () => {
         })
         navigate("/dashboard")
       }).catch((error)=>{
+        setLoading(false)
         console.log(error)
         if(error?.message==="Network Error"){
           toast.error("Server is Not Running Sorry Try Some time letter")
@@ -114,6 +119,7 @@ const Register = () => {
   };
 
   return (
+    <>
     <div className="Login">
       <div className="login-form">
         <h1>Register</h1>
@@ -222,9 +228,9 @@ const Register = () => {
           Already Have an Account? <b> Login</b>
         </p>
         <div>
-          <Button fullWidth variant="contained" endIcon={<SendIcon />} onClick={handleRegister}>
-            Register
-          </Button>
+          <LoadingButton loading={loading} fullWidth variant="contained" endIcon={<SendIcon />} onClick={handleRegister}>
+          Register
+          </LoadingButton>
         </div>
         <div className="orImgClass">
           <img className="orImg" src={Or} alt="Or Img" />
@@ -240,7 +246,10 @@ const Register = () => {
           />
         </div>
       </div>
+     
     </div>
+    <Footer />
+    </>
   );
 };
 
