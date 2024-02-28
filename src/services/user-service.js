@@ -20,3 +20,8 @@ export const GetAllUserExpense = async () => {
     privateAxios.get(`/api/v1/users/expense/getExpense`,{ timeout: 10000 });
     return response.data;
 }
+export const GetUserExpense = async () => {
+    const response = await 
+    privateAxios.get(`/api/v1/users/expense/getUserTotalSpend`,{ timeout: 10000 });
+    return response.data;
+}

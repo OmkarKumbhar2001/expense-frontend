@@ -26,10 +26,9 @@ const AddExpense = (props)=> {
     GetAllUserProducts()
       .then((response) => {
         setProducts(response?.data?.products);
-        console.log(response);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   }, [getData]);
   const handleChange = (name, value) => {
@@ -54,12 +53,9 @@ const AddExpense = (props)=> {
       return;
     } else {
       UserExpense(formData).then(res=>{
-        console.log(res)
-        if(getData){
-          setgetData(false)
-        }else{
-          setgetData(true)
-        }
+        toast.success("Your Data is updated");
+        props.checkUpdate(!getData);
+        setgetData(!getData)
         setFormData({
           product: "",
           spend: "",

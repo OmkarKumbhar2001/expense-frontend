@@ -53,12 +53,8 @@ const Login = () => {
   const handleLogin = () => {
     if(validator(formData))
       UserLogin(formData).then((response)=>{
-        console.log(response)
         doLogin(response?.data,()=>{
-          toast.success("User Login In Successfully",{
-            position:"top-right"
-           
-          })
+          toast.success("User Login In Successfully")
         })
         navigate("/dashboard")
       }).catch((error)=>{
