@@ -47,11 +47,11 @@ const Login = () => {
     for (const field in data) {
       if (!data[field]) {
         toast.error(`Error: ${field} is empty`)
+        setLoading(false)
         console.log(`Error: ${field} is empty`);
         return false;
       }
     }
-    setLoading(false)
     return true;
   }
   const handleLogin = () => {

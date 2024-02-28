@@ -47,6 +47,7 @@ const Register = () => {
   };
 
   const validateForm = () => {
+    setLoading(false)
     let isValid = true;
     const newErrors = { ...formErrors };
 
@@ -76,7 +77,6 @@ const Register = () => {
     }
 
     setFormErrors(newErrors);
-    setLoading(false)
     return isValid;
   };
 
