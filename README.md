@@ -15,3 +15,9 @@ You can access the live web app [here](https://expense-frontend-beta.vercel.app/
 - **Total Spend Display:** Provides users with the total amount spent.
 - **Responsive Design:** The application is designed to be accessible across various devices.
 
+### Tech Stack
+    1.Frontend: React.js, Redux 
+    2.Backend: Node.js, Express.js
+    3.Database: MongoDB
+    4.Authentication: JSON Web Tokens (JWT)
+*Deployment: Vercel
