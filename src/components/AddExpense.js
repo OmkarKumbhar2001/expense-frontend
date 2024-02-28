@@ -1,4 +1,4 @@
-import { Button, IconButton, InputAdornment } from "@mui/material";
+import { IconButton, InputAdornment } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import CurrencyRupee from "@mui/icons-material/CurrencyRupee";
 import Autocomplete from "@mui/material/Autocomplete";
@@ -12,10 +12,11 @@ import dayjs from "dayjs";
 import { GetAllUserProducts } from "../services/secure-requests";
 import { toast } from "react-hot-toast";
 import { UserExpense } from "../services/user-service";
-
+import LoadingButton from '@mui/lab/LoadingButton';
 const AddExpense = (props)=> {
   const [userProducts, setProducts] = useState([]);
   const [getData, setgetData] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     product: "",
     spend: "",
@@ -46,6 +47,7 @@ const AddExpense = (props)=> {
   };
 
   const submitSpend = async () => {
+    setLoading(true)
     let { product, spend, timing, description } = formData;
 
     if (!product || !spend || !timing || !description) {
@@ -53,6 +55,7 @@ const AddExpense = (props)=> {
       return;
     } else {
       UserExpense(formData).then(res=>{
+        setLoading(false)
         toast.success("Your Data is updated");
         props.checkUpdate(!getData);
         setgetData(!getData)
@@ -63,6 +66,7 @@ const AddExpense = (props)=> {
           timing: dayjs(),
         });
       }).catch(err=>{
+        setLoading(false)
         console.log(err)
       })
       
@@ -145,9 +149,9 @@ const AddExpense = (props)=> {
         </LocalizationProvider>
       </div>
       <div>
-        <Button variant="contained" onClick={submitSpend}>
+        <LoadingButton loading={loading} loadingIndicator="Updating..." variant="contained" onClick={submitSpend}>
           Submit
-        </Button>
+        </LoadingButton>
       </div>
     </div>
   );
