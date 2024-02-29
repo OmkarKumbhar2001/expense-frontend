@@ -157,6 +157,8 @@ const AddExpense = (props)=> {
           multiline
           maxRows={4}
           sx={getTextFieldStyles()}
+          InputLabelProps={{style: { color: "white" }, }}
+          InputProps={{style: { color: "white" },}}
         />
       </div>
       <div>
