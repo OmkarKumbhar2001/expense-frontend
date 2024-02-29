@@ -35,6 +35,9 @@ const AddExpense = (props)=> {
         borderColor: 'white', 
       },
     },
+    '& input': {
+      color: 'white', 
+    },
   });
   useEffect(() => {
     GetAllUserProducts()
@@ -133,13 +136,10 @@ const AddExpense = (props)=> {
               {...params}
               value={formData.product}
               label="Search input"
-              sx={getTextFieldStyles()}
-           InputLabelProps={{style: { color: "white" }, }}
               onChange={(e) => handleChange("product", e.target.value)}
               InputProps={{
                 ...params.InputProps,
                 type: "search",
-                color:"white"
               }}
             />
           )}
@@ -157,24 +157,18 @@ const AddExpense = (props)=> {
           multiline
           maxRows={4}
           sx={getTextFieldStyles()}
-           InputLabelProps={{style: { color: "white" }, }}
-           InputProps={{style: { color: "white" },}}
         />
       </div>
       <div>
         <LocalizationProvider dateAdapter={AdapterDayjs} size="small">
-          <DemoContainer components={["DateTimePicker"]} size="small" sx={getTextFieldStyles()}
-           InputLabelProps={{style: { color: "white" }, }}
-           InputProps={{style: { color: "white" },}}>
+          <DemoContainer components={["DateTimePicker"]} size="small">
             <DateTimePicker
               label="Select Time"
               name="timing"
               value={formData.timing}
               onChange={(value) => handleChange("timing", value)}
               size="small"
-              sx={getTextFieldStyles()}
-           InputLabelProps={{style: { color: "white" }, }}
-           InputProps={{style: { color: "white" },}}
+               sx={getTextFieldStyles()}
             />
           </DemoContainer>
         </LocalizationProvider>

@@ -52,7 +52,7 @@ const Dashboard = () => {
       <b>We removed table we are working On It apologize</b>
         <h1>Total Spend {expenses}</h1>
         <Button variant="outlined" size="medium">
-          Expenses
+          Details
         </Button>
       </div>
       <Footer />
