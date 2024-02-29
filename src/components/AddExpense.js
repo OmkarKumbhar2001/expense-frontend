@@ -12,8 +12,8 @@ import dayjs from "dayjs";
 import { GetAllUserProducts } from "../services/secure-requests";
 import { toast } from "react-hot-toast";
 import { UserExpense } from "../services/user-service";
-import LoadingButton from '@mui/lab/LoadingButton';
-const AddExpense = (props)=> {
+import LoadingButton from "@mui/lab/LoadingButton";
+const AddExpense = (props) => {
   const [userProducts, setProducts] = useState([]);
   const [getData, setgetData] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -24,19 +24,19 @@ const AddExpense = (props)=> {
     timing: dayjs(), // Initialize timing with current date/time
   });
   const getTextFieldStyles = () => ({
-    '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        borderColor: 'white', 
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "white",
       },
-      '&:hover fieldset': {
-        borderColor: 'white', 
+      "&:hover fieldset": {
+        borderColor: "white",
       },
-      '&.Mui-focused fieldset': {
-        borderColor: 'white', 
+      "&.Mui-focused fieldset": {
+        borderColor: "white",
       },
     },
-    '& input': {
-      color: 'white', 
+    "& input": {
+      color: "white",
     },
   });
   useEffect(() => {
@@ -63,35 +63,33 @@ const AddExpense = (props)=> {
   };
 
   const submitSpend = async () => {
-    setLoading(true)
+    setLoading(true);
     let { product, spend, timing, description } = formData;
 
     if (!product || !spend || !timing || !description) {
       toast.error("Please fill in all fields.");
-      setLoading(false)
+      setLoading(false);
       return;
     } else {
-      UserExpense(formData).then(res=>{
-        setLoading(false)
-        toast.success("Your Data is updated");
-        props.checkUpdate(!getData);
-        setgetData(!getData)
-        setFormData({
-          product: "",
-          spend: "",
-          description: "",
-          timing: dayjs(),
+      UserExpense(formData)
+        .then((res) => {
+          setLoading(false);
+          toast.success("Your Data is updated");
+          props.checkUpdate(!getData);
+          setgetData(!getData);
+          setFormData({
+            product: "",
+            spend: "",
+            description: "",
+            timing: dayjs(),
+          });
+        })
+        .catch((err) => {
+          setLoading(false);
+          console.log(err);
         });
-      }).catch(err=>{
-        setLoading(false)
-        console.log(err)
-      })
-      
-      
     }
   };
-
- 
 
   return (
     <div className="addExpense">
@@ -106,7 +104,7 @@ const AddExpense = (props)=> {
         value={formData.spend}
         onChange={(e) => handleChange("spend", e.target.value)}
         sx={getTextFieldStyles()}
-        InputLabelProps={{style: { color: "white" }, }}
+        InputLabelProps={{ style: { color: "white" } }}
         InputProps={{
           style: { color: "white" },
           endAdornment: (
@@ -129,8 +127,8 @@ const AddExpense = (props)=> {
           onChange={handleProductChange}
           options={userProducts.map((option) => option?.product)}
           sx={getTextFieldStyles()}
-           InputLabelProps={{style: { color: "white" }, }}
-           InputProps={{style: { color: "white" },}}
+          InputLabelProps={{ style: { color: "white" } }}
+          InputProps={{ style: { color: "white" } }}
           renderInput={(params) => (
             <TextField
               {...params}
@@ -157,8 +155,8 @@ const AddExpense = (props)=> {
           multiline
           maxRows={4}
           sx={getTextFieldStyles()}
-          InputLabelProps={{style: { color: "white" }, }}
-          InputProps={{style: { color: "white" },}}
+          InputLabelProps={{ style: { color: "white" } }}
+          InputProps={{ style: { color: "white" } }}
         />
       </div>
       <div>
@@ -170,17 +168,27 @@ const AddExpense = (props)=> {
               value={formData.timing}
               onChange={(value) => handleChange("timing", value)}
               size="small"
-               sx={getTextFieldStyles()}
+              sx={{
+                ...getTextFieldStyles(),
+                "& .MuiIconButton-root": {
+                  color: "white", // Change the color of the icon to white
+                },
+              }}
             />
           </DemoContainer>
         </LocalizationProvider>
       </div>
       <div>
-        <LoadingButton loading={loading} loadingIndicator="Updating..." variant="contained" onClick={submitSpend}>
+        <LoadingButton
+          loading={loading}
+          loadingIndicator="Updating..."
+          variant="contained"
+          onClick={submitSpend}
+        >
           Submit
         </LoadingButton>
       </div>
     </div>
   );
-}
+};
 export default AddExpense;
