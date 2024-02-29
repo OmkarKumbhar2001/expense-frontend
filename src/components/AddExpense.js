@@ -23,6 +23,19 @@ const AddExpense = (props)=> {
     description: "",
     timing: dayjs(), // Initialize timing with current date/time
   });
+  const getTextFieldStyles = () => ({
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'white', 
+      },
+      '&:hover fieldset': {
+        borderColor: 'white', 
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: 'white', 
+      },
+    },
+  });
   useEffect(() => {
     GetAllUserProducts()
       .then((response) => {
@@ -89,7 +102,10 @@ const AddExpense = (props)=> {
         name="spend"
         value={formData.spend}
         onChange={(e) => handleChange("spend", e.target.value)}
+        sx={getTextFieldStyles()}
+        InputLabelProps={{style: { color: "white" }, }}
         InputProps={{
+          style: { color: "white" },
           endAdornment: (
             <InputAdornment position="end">
               <IconButton aria-label="price" edge="end">
@@ -109,6 +125,9 @@ const AddExpense = (props)=> {
           value={formData.product}
           onChange={handleProductChange}
           options={userProducts.map((option) => option?.product)}
+          sx={getTextFieldStyles()}
+           InputLabelProps={{style: { color: "white" }, }}
+           InputProps={{style: { color: "white" },}}
           renderInput={(params) => (
             <TextField
               {...params}
@@ -134,6 +153,9 @@ const AddExpense = (props)=> {
           onChange={(e) => handleChange("description", e.target.value)}
           multiline
           maxRows={4}
+          sx={getTextFieldStyles()}
+           InputLabelProps={{style: { color: "white" }, }}
+           InputProps={{style: { color: "white" },}}
         />
       </div>
       <div>
@@ -145,6 +167,9 @@ const AddExpense = (props)=> {
               value={formData.timing}
               onChange={(value) => handleChange("timing", value)}
               size="small"
+              sx={getTextFieldStyles()}
+           InputLabelProps={{style: { color: "white" }, }}
+           InputProps={{style: { color: "white" },}}
             />
           </DemoContainer>
         </LocalizationProvider>
