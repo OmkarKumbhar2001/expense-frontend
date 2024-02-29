@@ -169,6 +169,7 @@ const AddExpense = (props) => {
               value={formData.timing}
               onChange={(value) => handleChange("timing", value)}
               size="small"
+              InputLabelProps={{ style: { color: "white" } }}
               sx={{
                 ...getTextFieldStyles(),
                 "& .MuiIconButton-root": {
