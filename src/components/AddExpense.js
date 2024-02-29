@@ -133,10 +133,13 @@ const AddExpense = (props)=> {
               {...params}
               value={formData.product}
               label="Search input"
+              sx={getTextFieldStyles()}
+           InputLabelProps={{style: { color: "white" }, }}
               onChange={(e) => handleChange("product", e.target.value)}
               InputProps={{
                 ...params.InputProps,
                 type: "search",
+                color:"white"
               }}
             />
           )}
@@ -160,7 +163,9 @@ const AddExpense = (props)=> {
       </div>
       <div>
         <LocalizationProvider dateAdapter={AdapterDayjs} size="small">
-          <DemoContainer components={["DateTimePicker"]} size="small">
+          <DemoContainer components={["DateTimePicker"]} size="small" sx={getTextFieldStyles()}
+           InputLabelProps={{style: { color: "white" }, }}
+           InputProps={{style: { color: "white" },}}>
             <DateTimePicker
               label="Select Time"
               name="timing"
