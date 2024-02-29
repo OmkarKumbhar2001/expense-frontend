@@ -135,6 +135,7 @@ const AddExpense = (props) => {
               value={formData.product}
               label="Search input"
               onChange={(e) => handleChange("product", e.target.value)}
+              InputLabelProps={{ style: { color: "white" } }}
               InputProps={{
                 ...params.InputProps,
                 type: "search",
