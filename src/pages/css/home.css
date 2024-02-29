@@ -1,20 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Anta&family=Lilita+One&family=Montserrat:wght@500&display=swap');
 .home{
-    min-height: 90vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    margin-top: 4rem;
+    padding: 4rem;
     align-items: center;
     gap: 2rem;
+
 }
 .loging-button-home{
-    max-height: 4rem;
     width: 85%;
     display: flex;
    justify-content: flex-end;
 }
 .landingpage {
-    font-family: "Lilita One", sans-serif;
+    height: 60vh;
     font-weight: bolder;
     letter-spacing: 1px;
     font-size: 2rem;
@@ -22,9 +22,27 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 1rem;
 }
 .landingpage h1 {
+    color: aliceblue;
     text-align: center;
-    box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px inset;
+    /* box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px inset; */
+}
+.tryit-button{
+    cursor: pointer;
+    padding: 1rem 3.5rem;
+    letter-spacing: 0.2rem;
+    text-transform:uppercase;
+    font-size: large;
+    border: 1px solid gray;
+    border-radius: 0.5rem;
+    background-color: #0d0f1600;
+    color: aliceblue;
+}
+.tryit-button:hover{
+    background-color: #040A1E;
+    transform: scale(1.1);
+    text-transform: capitalize;
 }

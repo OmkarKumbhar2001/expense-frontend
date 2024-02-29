@@ -21,6 +21,19 @@ const Register = () => {
       navigate("/dashboard")
     }
   },[navigate])
+  const getTextFieldStyles = () => ({
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'white', 
+      },
+      '&:hover fieldset': {
+        borderColor: 'white', 
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: 'white', 
+      },
+    },
+  });
   const [showPassword, setShowPassword] = useState(false);
  
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -137,6 +150,9 @@ const Register = () => {
             onChange={handleChange}
             error={!!formErrors.email}
             helperText={formErrors.email}
+            InputProps={{style: { color: "white" },}}
+            InputLabelProps={{style: { color: "white" }, }}
+            sx={getTextFieldStyles()}
           />
         </div>
         <div>
@@ -152,6 +168,9 @@ const Register = () => {
             onChange={handleChange}
             error={!!formErrors.username}
             helperText={formErrors.username}
+            InputProps={{style: { color: "white" },}}
+            InputLabelProps={{style: { color: "white" }, }}
+            sx={getTextFieldStyles()}
           />
         </div>
         <div>
@@ -167,6 +186,9 @@ const Register = () => {
             onChange={handleChange}
             error={!!formErrors.fullName}
             helperText={formErrors.fullName}
+            InputProps={{style: { color: "white" },}}
+            InputLabelProps={{style: { color: "white" }, }}
+            sx={getTextFieldStyles()}
           />
         </div>
         <div>
@@ -182,7 +204,11 @@ const Register = () => {
             onChange={handleChange}
             error={!!formErrors.password}
             helperText={formErrors.password}
+          
+            InputLabelProps={{style: { color: "white" }, }}
+            sx={getTextFieldStyles()}
             InputProps={{
+              style: { color: "white" },
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton
@@ -210,7 +236,10 @@ const Register = () => {
             onChange={handleChange}
             error={!!formErrors.confirmPassword}
             helperText={formErrors.confirmPassword}
+            InputLabelProps={{style: { color: "white" }, }}
+            sx={getTextFieldStyles()}
             InputProps={{
+              style: { color: "white" },
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton
