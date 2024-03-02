@@ -10,7 +10,7 @@ import Footer from "../../components/Footer";
 const Dashboard = () => {
   const [username, setUsername] = useState("");
   const [expenses, setExpenses] = useState();
-  const [updateRequest,setUpdateRequest]=useState(false)
+  const [updateRequest,setUpdateRequest]=useState(true)
   const navigate = useNavigate();
   useEffect(() => {
     setUsername(getCurrentUser());
@@ -27,6 +27,7 @@ const Dashboard = () => {
         console.error(error);
       });
   }, [updateRequest]);
+  console.log(updateRequest)
   const logout = () => {
     doLogout(() => {
       navigate("/login");

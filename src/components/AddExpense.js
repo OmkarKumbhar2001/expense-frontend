@@ -14,6 +14,7 @@ import { toast } from "react-hot-toast";
 import { UserExpense } from "../services/user-service";
 import LoadingButton from "@mui/lab/LoadingButton";
 const AddExpense = (props) => {
+  const { checkUpdate } = props;
   const [userProducts, setProducts] = useState([]);
   const [getData, setgetData] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -73,9 +74,10 @@ const AddExpense = (props) => {
     } else {
       UserExpense(formData)
         .then((res) => {
+          console.log(!getData)
+          checkUpdate(!getData);
           setLoading(false);
           toast.success("Your Data is updated");
-          props.checkUpdate(!getData);
           setgetData(!getData);
           setFormData({
             product: "",
@@ -127,19 +129,22 @@ const AddExpense = (props) => {
           onChange={handleProductChange}
           options={userProducts.map((option) => option?.product)}
           sx={getTextFieldStyles()}
-          InputLabelProps={{ style: { color: "white" } }}
-          InputProps={{ style: { color: "white" } }}
+          // InputLabelProps={{ style: { color: "white" } }} 
+          // InputProps={{ style: { color: "white" } }}
           renderInput={(params) => (
             <TextField
               {...params}
               value={formData.product}
               label="Search input"
               onChange={(e) => handleChange("product", e.target.value)}
-              InputLabelProps={{ style: { color: "white" } }}
               InputProps={{
-                ...params.InputProps,
-                type: "search",
-              }}
+        ...params.InputProps,
+        type: "search",
+        style: { color: "white" }, // Set the style for the input
+      }}
+      InputLabelProps={{ 
+        style: { color: "white" }, // Set the style for the label
+      }}
             />
           )}
         />
@@ -157,7 +162,10 @@ const AddExpense = (props) => {
           maxRows={4}
           sx={getTextFieldStyles()}
           InputLabelProps={{ style: { color: "white" } }}
-          InputProps={{ style: { color: "white" } }}
+          InputProps={{
+            type: "search",
+            style: { color: "white" }, // Move the style here
+          }}
         />
       </div>
       <div>
