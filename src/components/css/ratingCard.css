@@ -1,0 +1,20 @@
+.ratingCard{
+    width: 25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    border: 1px solid rgb(62, 62, 62);
+    padding: 2rem;
+    border-radius: 10px;
+    color:  rgb(147, 144, 144);
+}
+
+.ratingCard .describe{
+ border-top: 2px solid rgb(62, 62, 62);
+ padding-top: 1rem;
+}
+@media screen and (max-width: 435px) {
+    .ratingCard {
+        width: 20rem;
+    }
+  }

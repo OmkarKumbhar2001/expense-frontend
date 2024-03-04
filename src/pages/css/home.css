@@ -46,3 +46,18 @@
     transform: scale(1.1);
     text-transform: capitalize;
 }
+.rating-in-home {
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+@media screen and (max-width: 500px) {
+    .landingpage  {
+       font-size: 1.4rem;
+    }
+    .tryit-button{
+        padding: 1rem 3rem;
+    }
+  }
