@@ -10,7 +10,7 @@ import "./css/login.css";
 import Or from "./assets/OR.png";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
-import { UserLogin } from "../services/user-service";
+import { UserLogin, GoogleLoginRegisterApi } from "../services/user-service";
 import { doLogin, isLoggedIn } from "../auth";
 import Footer from "../components/Footer";
 const Login = () => {
@@ -35,9 +35,18 @@ const Login = () => {
     });
   };
   const authGoogleLogin = (token) => {
-    toast.success("We are Working on it please try to login  by form ", {
-      icon: "🤩",
-    });
+    GoogleLoginRegisterApi({ googleToken: token })
+      .then((res) => {
+        doLogin(res?.data,()=>{
+          toast.success(res.message,{
+            position:"top-right"
+          })
+          navigate("/dashboard");
+        })
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   const signup = () => {
     navigate("/register");

@@ -28,11 +28,12 @@ body{
   min-height: 100vh;
   overflow: visible !important;
   font-family: 'Montserrat', sans-serif !important;
-color: aliceblue !important;
-
+  color: aliceblue !important;    
   margin: 0;
   padding: 0;
   background: rgb(14,30,85);
   background: radial-gradient(circle, rgba(14,30,85,1) 0%, rgba(0,0,0,1) 52%);
   background-position: fixed;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }

@@ -8,7 +8,7 @@ import { GoogleLogin } from "@react-oauth/google";
 import "./css/login.css";
 import Or from "./assets/OR.png";
 import { useNavigate } from "react-router-dom";
-import { SignUp } from "../services/user-service";
+import { SignUp,GoogleLoginRegisterApi } from "../services/user-service";
 import { toast } from "react-hot-toast";
 import { doLogin, isLoggedIn } from "../auth";
 import LoadingButton from '@mui/lab/LoadingButton';
@@ -123,9 +123,19 @@ const Register = () => {
   };
 
   const authGoogleLogin = (token) => {
-    toast.success("We are Working on it please try to register by form ",{
-      icon:"🤩"
-     });
+    GoogleLoginRegisterApi({ googleToken: token })
+    .then((res) => {
+      console.log(res);
+      doLogin(res?.data,()=>{
+        toast.success(res.message,{
+          position:"top-right"
+        })
+        navigate("/dashboard");
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   };
 
   const handleLogin = () => {

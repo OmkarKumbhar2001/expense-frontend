@@ -25,3 +25,8 @@ export const GetUserExpense = async () => {
     privateAxios.get(`/api/v1/users/expense/getUserTotalSpend`,{ timeout: 10000 });
     return response.data;
 }
+export const GoogleLoginRegisterApi = async(token) =>{
+    const response = await myAxios
+    .post('/api/v1/users/google-login', token);
+return response.data;
+}
