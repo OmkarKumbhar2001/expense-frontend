@@ -11,7 +11,10 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { ArrowLeft } from 'lucide-react';
 import { GetAllUserExpense } from "../../services/user-service";
+import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 const CustomTooltip = ({ active, payload, label }) => {
   if (active) {
     return (
@@ -19,7 +22,7 @@ const CustomTooltip = ({ active, payload, label }) => {
         <p
           className="label"
           style={{ color: "black" }}
-        >{`${label} : ${payload[0].value}`}</p>
+        >{`${label} : ${payload[0].value}₹`}</p>
       </div>
     );
   }
@@ -27,6 +30,7 @@ const CustomTooltip = ({ active, payload, label }) => {
   return null;
 };
 const ExpenseList = () => {
+  const navigate=useNavigate();
   const [userExpenses, setUserExpenses] = useState([]);
 
   useEffect(() => {
@@ -41,6 +45,9 @@ const ExpenseList = () => {
 
     fetchData();
   }, []);
+  const goBackToDashBoard=()=>{
+    navigate("/dashboard")
+  }
   console.log(userExpenses);
   return (
     <div className="ExpenseList">
@@ -56,6 +63,9 @@ const ExpenseList = () => {
             <Bar dataKey="totalSpend" fill="#8884d8" barGap={"40%"} />
           </BarChart>
         </ResponsiveContainer>
+      </div>
+      <div className="backButton">
+        <Button onClick={goBackToDashBoard} startIcon={<ArrowLeft />} variant="outlined">Add New Expence</Button>
       </div>
     </div>
   );

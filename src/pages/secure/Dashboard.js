@@ -7,7 +7,7 @@ import { Button } from "@mui/material";
 import {  GetUserExpense } from "../../services/user-service";
 import Footer from "../../components/Footer";
 import CustomNavbar from "../../components/CustomNavbar";
-
+import { ArrowRight } from 'lucide-react';
 const Dashboard = () => {
   const [expenses, setExpenses] = useState();
   const [updateRequest,setUpdateRequest]=useState(true)
@@ -42,7 +42,7 @@ const Dashboard = () => {
       <div className="Expensecs_Button">
       <b>We removed table we are working On It apologize</b>
         <h1>Total Spend {expenses}</h1>
-        <Button variant="outlined" size="medium" onClick={goToDetails}>
+        <Button variant="outlined" size="medium" onClick={goToDetails}  endIcon={<ArrowRight />}>
           Details
         </Button>
       </div>
