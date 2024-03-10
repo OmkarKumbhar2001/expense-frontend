@@ -26,7 +26,9 @@ const Dashboard = () => {
         console.error(error);
       });
   }, [updateRequest]);
-  console.log(updateRequest)
+  const goToDetails=()=>{
+    navigate("/details")
+  }
 
 
   return (
@@ -40,7 +42,7 @@ const Dashboard = () => {
       <div className="Expensecs_Button">
       <b>We removed table we are working On It apologize</b>
         <h1>Total Spend {expenses}</h1>
-        <Button variant="outlined" size="medium">
+        <Button variant="outlined" size="medium" onClick={goToDetails}>
           Details
         </Button>
       </div>

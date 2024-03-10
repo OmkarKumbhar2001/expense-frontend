@@ -8,7 +8,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Avatar from "@mui/material/Avatar";
-import { doLogout } from "../auth";
+import { doLogout, getCurrentUser } from "../auth";
 import { useNavigate } from "react-router-dom";
 import { deepOrange } from "@mui/material/colors";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -31,6 +31,7 @@ const drawerPaperStyles = {
 };
 
 export default function LoginSideBar() {
+    const [username, setUsername] = React.useState("");
   const navigate = useNavigate();
   const logout = () => {
     doLogout(() => {
@@ -43,6 +44,10 @@ export default function LoginSideBar() {
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
+ 
+  React.useEffect(()=>{
+      setUsername(getCurrentUser());
+  },[])
 
   const DrawerList = (
     <Box sx={{ width: 350,marginTop:"3rem" }} onClick={toggleDrawer(false)}>
@@ -84,7 +89,7 @@ export default function LoginSideBar() {
         <Button onClick={toggleDrawer(true)}>
           <Avatar
             sx={{ bgcolor: deepOrange[500] }}
-            alt="Omkar Kumbhar"
+            alt={username}
             src="/broken-image.jpg"
           />
         </Button>

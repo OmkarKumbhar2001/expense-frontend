@@ -1,0 +1,14 @@
+/* ExpenseList.css */
+.ExpenseList{
+    margin-top: 2rem;
+}
+.bar-diagram-expence{
+  margin: auto;
+  width: 70%;
+  height: 500px;
+}
+.custom-tooltip{
+  background-color: aliceblue;
+  padding: 1rem;
+  border-radius: 2rem;
+}
