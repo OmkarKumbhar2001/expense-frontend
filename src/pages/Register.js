@@ -9,10 +9,11 @@ import "./css/login.css";
 import Or from "./assets/OR.png";
 import { useNavigate } from "react-router-dom";
 import { SignUp,GoogleLoginRegisterApi } from "../services/user-service";
-import { toast } from "react-hot-toast";
+
 import { doLogin, isLoggedIn } from "../auth";
 import LoadingButton from '@mui/lab/LoadingButton';
 import Footer from "../components/Footer";
+import { toast } from "sonner";
 const Register = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);

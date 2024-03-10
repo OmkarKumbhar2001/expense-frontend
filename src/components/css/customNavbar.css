@@ -1,0 +1,8 @@
+.main_usernav{
+    padding: 2rem;
+    display: flex;
+    justify-content: space-around;
+  }
+  .main_usernav h1{
+    font-size: 1.4rem;
+  }

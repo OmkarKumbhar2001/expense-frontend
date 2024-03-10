@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import "./css/addExpense.css";
 import dayjs from "dayjs";
 import { GetAllUserProducts } from "../services/secure-requests";
-import { toast } from "react-hot-toast";
+import { toast } from "sonner";
 import { UserExpense } from "../services/user-service";
 import LoadingButton from "@mui/lab/LoadingButton";
 const AddExpense = (props) => {

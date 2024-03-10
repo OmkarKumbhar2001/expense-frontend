@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from "react";
 import "../css/dashboard.css";
 import AddExpense from "../../components/AddExpense";
-import { doLogout, getCurrentUser, isLoggedIn } from "../../auth";
+import { isLoggedIn } from "../../auth";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import {  GetUserExpense } from "../../services/user-service";
 import Footer from "../../components/Footer";
+import CustomNavbar from "../../components/CustomNavbar";
 
 const Dashboard = () => {
-  const [username, setUsername] = useState("");
   const [expenses, setExpenses] = useState();
   const [updateRequest,setUpdateRequest]=useState(true)
   const navigate = useNavigate();
   useEffect(() => {
-    setUsername(getCurrentUser());
     if (!isLoggedIn()) {
       navigate("/login");
     }
@@ -28,22 +27,11 @@ const Dashboard = () => {
       });
   }, [updateRequest]);
   console.log(updateRequest)
-  const logout = () => {
-    doLogout(() => {
-      navigate("/login");
-    });
-  };
+
 
   return (
     <div className="dashboard">
-      <div className="main_usernav">
-        <h1>Hi {username} 👋</h1>
-
-        <Button variant="contained" onClick={logout}>
-          Logout{" "}
-        </Button>
-      </div>
-
+      <CustomNavbar />
       <div className="addExpensesMainDiv">
         <AddExpense 
           checkUpdate={setUpdateRequest}

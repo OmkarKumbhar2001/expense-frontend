@@ -9,7 +9,7 @@ import { GoogleLogin } from "@react-oauth/google";
 import "./css/login.css";
 import Or from "./assets/OR.png";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-hot-toast";
+import { toast } from "sonner";
 import { UserLogin, GoogleLoginRegisterApi } from "../services/user-service";
 import { doLogin, isLoggedIn } from "../auth";
 import Footer from "../components/Footer";

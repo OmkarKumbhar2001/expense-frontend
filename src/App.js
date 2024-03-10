@@ -5,11 +5,11 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/secure/Dashboard";
 import Home from "./pages/home/Home";
 import { GoogleOAuthProvider } from '@react-oauth/google';
-import  { Toaster } from 'react-hot-toast';
+import { Toaster } from 'sonner';
 function App() {
   return (
     <GoogleOAuthProvider clientId="633999849028-1foijqvg6e3g71ltuv2feepkb530tjvo.apps.googleusercontent.com">
-       <Toaster />
+       <Toaster position="top-center" theme="dark" closeButton="true" />
     <BrowserRouter>
       <Routes>
    
