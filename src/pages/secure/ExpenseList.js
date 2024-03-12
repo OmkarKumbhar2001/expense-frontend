@@ -15,6 +15,7 @@ import { ArrowLeft } from 'lucide-react';
 import { GetAllUserExpense } from "../../services/user-service";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 const CustomTooltip = ({ active, payload, label }) => {
   if (active) {
     return (
@@ -22,7 +23,7 @@ const CustomTooltip = ({ active, payload, label }) => {
         <p
           className="label"
           style={{ color: "black" }}
-        >{`${label} : ${payload[0].value}₹`}</p>
+        >{`${label} : ${payload[0]?.value}₹`}</p>
       </div>
     );
   }
@@ -37,14 +38,20 @@ const ExpenseList = () => {
     const fetchData = async () => {
       try {
         const response = await GetAllUserExpense();
-        setUserExpenses(response?.data?.expenses); // Assuming response is in the format { data: [...] }
+        if(response?.data?.expenses.length<=0){
+          toast("Please Add expenses")
+          navigate("/dashboard")
+        }else{
+          setUserExpenses(response?.data?.expenses); // Assuming response is in the format { data: [...] }
+        }
+        
       } catch (error) {
         console.log("Error fetching user expenses:", error);
       }
     };
 
     fetchData();
-  }, []);
+  }, [navigate]);
   const goBackToDashBoard=()=>{
     navigate("/dashboard")
   }

@@ -37,6 +37,7 @@ const Login = () => {
   const authGoogleLogin = (token) => {
     GoogleLoginRegisterApi({ googleToken: token })
       .then((res) => {
+        console.log(res)
         doLogin(res?.data,()=>{
           toast.success(res.message,{
             position:"top-right"
@@ -68,11 +69,21 @@ const Login = () => {
     if (validator(formData))
       UserLogin(formData)
         .then((response) => {
-          doLogin(response?.data, () => {
+          console.log(response)
+          if(response?.status===201){
+            setLoading(false);
+            toast.success("You need to Verify Account",{
+              description:response?.data?.data?.message
+            });
+          }else{
+            doLogin(response?.data?.data, () => {
             toast.success("User Login In Successfully");
             setLoading(false);
           });
           navigate("/dashboard");
+          }
+
+         
         })
         .catch((error) => {
           setLoading(false);

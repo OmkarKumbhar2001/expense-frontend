@@ -7,10 +7,11 @@ import Home from "./pages/home/Home";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { Toaster } from 'sonner';
 import ExpenseList from "./pages/secure/ExpenseList";
+import VerifyMail from "./pages/home/VerifyMail";
 function App() {
   return (
     <GoogleOAuthProvider clientId="633999849028-1foijqvg6e3g71ltuv2feepkb530tjvo.apps.googleusercontent.com">
-       <Toaster position="top-center" theme="dark" closeButton="true" />
+       <Toaster position="top-center" theme="dark"  />
     <BrowserRouter>
       <Routes>
    
@@ -19,6 +20,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/details" element={<ExpenseList />} />
+        <Route path="/users/:id/verify/:token" element={<VerifyMail />} />
         <Route path="/*" element={<Home />} />
       </Routes>
     </BrowserRouter>

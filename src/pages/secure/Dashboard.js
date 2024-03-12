@@ -23,6 +23,7 @@ const Dashboard = () => {
         setExpenses(response?.data?.totalSpend);
       })
       .catch((error) => {
+        setExpenses(0);
         console.error(error);
       });
   }, [updateRequest]);
