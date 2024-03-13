@@ -98,13 +98,15 @@ const Register = () => {
     setLoading(true)
     if (validateForm()) {
       SignUp(formData).then((response)=>{
-        setLoading(false)
-        doLogin(response?.data,()=>{
-          toast.success("User Register In Successfully",{
-            position:"top-right"
-          })
-        })
-        navigate("/dashboard")
+       console.log(response)
+        toast.success("You need to Verify Account",{
+          description:response?.data?.data?.message
+        });
+        // doLogin(response?.data,()=>{
+        //   toast.success("User Register In Successfully",{
+        //     position:"top-right"
+        //   })
+        // })
       }).catch((error)=>{
         setLoading(false)
         console.log(error)
