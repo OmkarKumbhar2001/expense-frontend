@@ -8,7 +8,7 @@ import { isLoggedIn } from "../../auth";
 import { Button } from "@mui/material";
 import { Rating } from "../../data/rating";
 import RatingCard from "../../components/RateingCard/RatingCard";
-
+import GridLines from 'react-gridlines';
 const Home = () => {
   const navigate = useNavigate();
   useEffect(() => {
@@ -24,7 +24,8 @@ const Home = () => {
 
   return (
     <>
-      <div className="home">
+    <GridLines className="grid-area" cellWidth={90} strokeWidth={0.1} cellWidth2={0}>
+         <div className="home">
         <div className="loging-button-home">
           <Button onClick={() => goToRegister("login")}>Login</Button>
         </div>
@@ -65,6 +66,8 @@ const Home = () => {
         </div>
       
       </div>
+      </GridLines>
+
       <Footer />
     </>
   );
