@@ -99,7 +99,7 @@ const Register = () => {
     if (validateForm()) {
       SignUp(formData).then((response)=>{
        console.log(response)
-        toast.success("You need to Verify Account",{
+        toast.success("You need to Verify Account from your mail please check",{
           description:response?.data?.data?.message
         });
       }).catch((error)=>{
