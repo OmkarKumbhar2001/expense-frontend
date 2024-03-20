@@ -14,7 +14,6 @@ function App() {
        <Toaster position="top-center" theme="dark"  />
     <BrowserRouter>
       <Routes>
-   
         <Route path="/" element={<Home />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/login" element={<Login />} />
