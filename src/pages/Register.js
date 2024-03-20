@@ -98,7 +98,7 @@ const Register = () => {
     setLoading(true)
     if (validateForm()) {
       SignUp(formData).then((response)=>{
-       console.log(response)
+       setLoading(false)
         toast.success("You need to Verify Account from your mail please check",{
           description:response?.data?.data?.message
         });
@@ -115,8 +115,11 @@ const Register = () => {
             email: "",
             username: "",
           });
+          
         }
       })
+    }else{
+      setLoading(false)
     }
   };
 
@@ -267,7 +270,7 @@ const Register = () => {
         </p>
         <div>
           <LoadingButton loading={loading} fullWidth variant="contained" endIcon={<SendIcon />} onClick={handleRegister}>
-          Register
+            Register
           </LoadingButton>
         </div>
         <div className="orImgClass">
