@@ -8,6 +8,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import { Toaster } from 'sonner';
 import ExpenseList from "./pages/secure/ExpenseList";
 import VerifyMail from "./pages/home/VerifyMail";
+import Feedback from "./pages/Feedback";
 function App() {
   return (
     <GoogleOAuthProvider clientId="633999849028-1foijqvg6e3g71ltuv2feepkb530tjvo.apps.googleusercontent.com">
@@ -18,6 +19,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/feedback" element={<Feedback />} />
         <Route path="/details" element={<ExpenseList />} />
         <Route path="/users/:id/verify/:token" element={<VerifyMail />} />
         <Route path="/*" element={<Home />} />
