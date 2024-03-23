@@ -93,8 +93,8 @@ const Home = () => {
             </LineChart>
           </div>
           <div className="chart-info">
-            <h2>Track your monthly spending</h2>
-            <p>Visualize and manage your monthly spending effortlessly with our intuitive app. Track your expenses, analyze spending patterns, and stay on top of your financial goals. Gain valuable insights to make informed decisions and achieve financial stability. Take control of your finances today!</p>
+            <h2>Track your spending</h2>
+            <p>Visualize and manage your spending effortlessly with our intuitive app. Track your expenses, analyze spending patterns, and stay on top of your financial goals. Gain valuable insights to make informed decisions and achieve financial stability. Take control of your finances today!</p>
           </div>
         </div>
       </div>
